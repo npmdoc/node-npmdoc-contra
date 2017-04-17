@@ -1,0 +1,956 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/bevacqua/contra"
+
+    >contra (v1.9.4)</a>
+</h1>
+<h4>Asynchronous flow control with a functional taste to it</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.contra">module contra</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.contra.concurrent">
+            function <span class="apidocSignatureSpan">contra.</span>concurrent
+            <span class="apidocSignatureSpan">(tasks, concurrency, done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.contra.curry">
+            function <span class="apidocSignatureSpan">contra.</span>curry
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.contra.each">
+            function <span class="apidocSignatureSpan">contra.</span>each
+            <span class="apidocSignatureSpan">(collection, concurrency, iterator, done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.contra.emitter">
+            function <span class="apidocSignatureSpan">contra.</span>emitter
+            <span class="apidocSignatureSpan">(thing, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.contra.filter">
+            function <span class="apidocSignatureSpan">contra.</span>filter
+            <span class="apidocSignatureSpan">(collection, concurrency, iterator, done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.contra.map">
+            function <span class="apidocSignatureSpan">contra.</span>map
+            <span class="apidocSignatureSpan">(collection, concurrency, iterator, done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.contra.queue">
+            function <span class="apidocSignatureSpan">contra.</span>queue
+            <span class="apidocSignatureSpan">(worker, concurrency)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.contra.series">
+            function <span class="apidocSignatureSpan">contra.</span>series
+            <span class="apidocSignatureSpan">(tasks, done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.contra.waterfall">
+            function <span class="apidocSignatureSpan">contra.</span>waterfall
+            <span class="apidocSignatureSpan">(steps, done)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.contra.each">module contra.each</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.contra.each.each">
+            function <span class="apidocSignatureSpan">contra.</span>each
+            <span class="apidocSignatureSpan">(collection, concurrency, iterator, done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.contra.each.series">
+            function <span class="apidocSignatureSpan">contra.each.</span>series
+            <span class="apidocSignatureSpan">(collection, concurrency, iterator, done)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.contra.filter">module contra.filter</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.contra.filter.filter">
+            function <span class="apidocSignatureSpan">contra.</span>filter
+            <span class="apidocSignatureSpan">(collection, concurrency, iterator, done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.contra.filter.series">
+            function <span class="apidocSignatureSpan">contra.filter.</span>series
+            <span class="apidocSignatureSpan">(collection, concurrency, iterator, done)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.contra.map">module contra.map</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.contra.map.map">
+            function <span class="apidocSignatureSpan">contra.</span>map
+            <span class="apidocSignatureSpan">(collection, concurrency, iterator, done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.contra.map.series">
+            function <span class="apidocSignatureSpan">contra.map.</span>series
+            <span class="apidocSignatureSpan">(collection, concurrency, iterator, done)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.contra" id="apidoc.module.contra">module contra</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.contra.concurrent" id="apidoc.element.contra.concurrent">
+        function <span class="apidocSignatureSpan">contra.</span>concurrent
+        <span class="apidocSignatureSpan">(tasks, concurrency, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function concurrent(tasks, concurrency, done) {
+  if (typeof concurrency === &#x27;function&#x27;) { done = concurrency; concurrency = CONCURRENTLY; }
+  var d = once(done);
+  var q = queue(worker, concurrency);
+  var keys = Object.keys(tasks);
+  var results = a(tasks) ? [] : {};
+  q.unshift(keys);
+  q.on(&#x27;drain&#x27;, function completed () { d(null, results); });
+  function worker (key, next) {
+    debounce(tasks[key], [proceed]);
+    function proceed () {
+      var args = atoa(arguments);
+      if (errored(args, d)) { return; }
+      results[key] = args.shift();
+      next();
+    }
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  console.log(result);
+  // &#x3c;- &#x27;done&#x27;
+});
+```
+
+&#x3c;sub&#x3e;[_Back to top_](#quick-links)&#x3c;/sub&#x3e;
+
+## `λ.<span class="apidocCodeKeywordSpan">concurrent</span>(tasks, cap?, done?)`
+
+Executes tasks concurrently. Results get passed as an array or hash to an optional `done` callback. Task order is preserved in results
+. You can set a concurrency cap, and it&#x27;s uncapped by default.
+
+- `tasks` Collection of functions with the `(cb)` signature. Can be an array or an object
+- `cap` Optional concurrency level, used by the internal [queue](#%CE%BBqueueworker-cap1)
+- `done` Optional function with the `(err, results)` signature
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.contra.curry" id="apidoc.element.contra.curry">
+        function <span class="apidocSignatureSpan">contra.</span>curry
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function curry() {
+  var args = atoa(arguments);
+  var method = args.shift();
+  return function curried () {
+    var more = atoa(arguments);
+    method.apply(method, args.concat(more));
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+thing.emit(&#x27;error&#x27;, &#x27;foo&#x27;);
+&#x3c;- &#x27;foo&#x27;
+```
+
+&#x3c;sub&#x3e;[_Back to top_](#quick-links)&#x3c;/sub&#x3e;
+
+## `λ.<span class="apidocCodeKeywordSpan">curry</span>(fn, ...arguments)`
+
+Returns a function bound with some arguments and a `next` callback.
+
+```js
+λ.curry(fn, 1, 3, 5);
+// &#x3c;- function (next) { fn(1, 3, 5, next); }
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.contra.each" id="apidoc.element.contra.each">
+        function <span class="apidocSignatureSpan">contra.</span>each
+        <span class="apidocSignatureSpan">(collection, concurrency, iterator, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function api(collection, concurrency, iterator, done) {
+  var args = arguments;
+  if (args.length === 2) { iterator = concurrency; concurrency = CONCURRENTLY; }
+  if (args.length === 3 &#x26;&#x26; typeof concurrency !== &#x27;number&#x27;) { done = iterator; iterator = concurrency; concurrency = CONCURRENTLY
+; }
+  var keys = Object.keys(collection);
+  var tasks = a(collection) ? [] : {};
+  keys.forEach(function insert (key) {
+    tasks[key] = function iterate (cb) {
+      if (iterator.length === 3) {
+        iterator(collection[key], key, cb);
+      } else {
+        iterator(collection[key], cb);
+      }
+    };
+  });
+  concurrent(tasks, cap || concurrency, then ? then(collection, once(done)) : done);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+console.log(results);
+// &#x3c;- { first: &#x27;boom&#x27;, second: &#x27;foo&#x27; }
+});
+```
+
+&#x3c;sub&#x3e;[_Back to top_](#quick-links)&#x3c;/sub&#x3e;
+
+## `λ.<span class="apidocCodeKeywordSpan">each</span>(items, cap?, iterator, done?)`
+
+Applies an iterator to each element in the collection concurrently.
+
+- `items` Collection of items. Can be an array or an object
+- `cap` Optional concurrency level, used by the internal [queue](#%CE%BBqueueworker-cap1)
+- `iterator(item, key?, cb)` Function to execute on each item
+- `item` The current item
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.contra.emitter" id="apidoc.element.contra.emitter">
+        function <span class="apidocSignatureSpan">contra.</span>emitter
+        <span class="apidocSignatureSpan">(thing, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function emitter(thing, options) {
+  var opts = options || {};
+  var evt = {};
+  if (thing === undefined) { thing = {}; }
+  thing.on = function (type, fn) {
+    if (!evt[type]) {
+      evt[type] = [fn];
+    } else {
+      evt[type].push(fn);
+    }
+    return thing;
+  };
+  thing.once = function (type, fn) {
+    fn._once = true; // thing.off(fn) still works!
+    thing.on(type, fn);
+    return thing;
+  };
+  thing.off = function (type, fn) {
+    var c = arguments.length;
+    if (c === 1) {
+      delete evt[type];
+    } else if (c === 0) {
+      evt = {};
+    } else {
+      var et = evt[type];
+      if (!et) { return thing; }
+      et.splice(et.indexOf(fn), 1);
+    }
+    return thing;
+  };
+  thing.emit = function () {
+    var args = atoa(arguments);
+    return thing.emitterSnapshot(args.shift()).apply(this, args);
+  };
+  thing.emitterSnapshot = function (type) {
+    var et = (evt[type] || []).slice(0);
+    return function () {
+      var args = atoa(arguments);
+      var ctx = this || thing;
+      if (type === &#x27;error&#x27; &#x26;&#x26; opts.throws !== false &#x26;&#x26; !et.length) { throw args.length === 1 ? args[0] : args; }
+      et.forEach(function emitter (listen) {
+        if (opts.async) { debounce(listen, args, ctx); } else { listen.apply(ctx, args); }
+        if (listen._once) { thing.off(type, listen); }
+      });
+      return thing;
+    };
+  };
+  return thing;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// &#x3c;- &#x27;one of these jobs is done!&#x27;
+// &#x3c;- &#x27;one of these jobs is done!&#x27;
+// &#x3c;- &#x27;all done!&#x27;
+```
+
+&#x3c;sub&#x3e;[_Back to top_](#quick-links)&#x3c;/sub&#x3e;
+
+## `λ.<span class="apidocCodeKeywordSpan">emitter</span>(thing={}, options={})`
+
+Augments `thing` with the event emitter methods listed below. If `thing` isn&#x27;t provided, an event emitter is created for you
+. Emitter methods return the `thing` for chaining.
+
+- `thing` Optional. Writable JavaScript object
+- `emit(type, ...arguments)` Emits an event of type `type`, passing any `...arguments`
+- `emitterSnapshot(type)` Returns a function you can call, passing any `...arguments`
+- `on(type, fn)` Registers an event listener `fn` for `type` events
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.contra.filter" id="apidoc.element.contra.filter">
+        function <span class="apidocSignatureSpan">contra.</span>filter
+        <span class="apidocSignatureSpan">(collection, concurrency, iterator, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function api(collection, concurrency, iterator, done) {
+  var args = arguments;
+  if (args.length === 2) { iterator = concurrency; concurrency = CONCURRENTLY; }
+  if (args.length === 3 &#x26;&#x26; typeof concurrency !== &#x27;number&#x27;) { done = iterator; iterator = concurrency; concurrency = CONCURRENTLY
+; }
+  var keys = Object.keys(collection);
+  var tasks = a(collection) ? [] : {};
+  keys.forEach(function insert (key) {
+    tasks[key] = function iterate (cb) {
+      if (iterator.length === 3) {
+        iterator(collection[key], key, cb);
+      } else {
+        iterator(collection[key], cb);
+      }
+    };
+  });
+  concurrent(tasks, cap || concurrency, then ? then(collection, once(done)) : done);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## `λ.map.series(items, iterator, done?)`
+
+Effectively an alias for `λ.map(items, 1, iterator, done?)`.
+
+&#x3c;sub&#x3e;[_Back to top_](#quick-links)&#x3c;/sub&#x3e;
+
+## `λ.<span class="apidocCodeKeywordSpan">filter</span>(items, cap?, iterator, done?)`
+
+Applies an iterator to each element in the collection concurrently. Produces an object with the filtered results. Task order is
+preserved in results.
+
+- `items` Collection of items. Can be an array or an object
+- `cap` Optional concurrency level, used by the internal [queue](#%CE%BBqueueworker-cap1)
+- `iterator(item, key?, cb)` Function to execute on each item
+- `item` The current item
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.contra.map" id="apidoc.element.contra.map">
+        function <span class="apidocSignatureSpan">contra.</span>map
+        <span class="apidocSignatureSpan">(collection, concurrency, iterator, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function api(collection, concurrency, iterator, done) {
+  var args = arguments;
+  if (args.length === 2) { iterator = concurrency; concurrency = CONCURRENTLY; }
+  if (args.length === 3 &#x26;&#x26; typeof concurrency !== &#x27;number&#x27;) { done = iterator; iterator = concurrency; concurrency = CONCURRENTLY
+; }
+  var keys = Object.keys(collection);
+  var tasks = a(collection) ? [] : {};
+  keys.forEach(function insert (key) {
+    tasks[key] = function iterate (cb) {
+      if (iterator.length === 3) {
+        iterator(collection[key], key, cb);
+      } else {
+        iterator(collection[key], cb);
+      }
+    };
+  });
+  concurrent(tasks, cap || concurrency, then ? then(collection, once(done)) : done);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## `λ.each.series(items, iterator, done?)`
+
+Effectively an alias for `λ.each(items, 1, iterator, done?)`.
+
+&#x3c;sub&#x3e;[_Back to top_](#quick-links)&#x3c;/sub&#x3e;
+
+## `λ.<span class="apidocCodeKeywordSpan">map</span>(items, cap?, iterator, done?)`
+
+Applies an iterator to each element in the collection concurrently. Produces an object with the transformation results. Task order
+ is preserved in the results.
+
+- `items` Collection of items. Can be an array or an object
+- `cap` Optional concurrency level, used by the internal [queue](#%CE%BBqueueworker-cap1)
+- `iterator(item, key?, cb)` Function to execute on each item
+- `item` The current item
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.contra.queue" id="apidoc.element.contra.queue">
+        function <span class="apidocSignatureSpan">contra.</span>queue
+        <span class="apidocSignatureSpan">(worker, concurrency)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function queue(worker, concurrency) {
+  var q = [], load = 0, max = concurrency || 1, paused;
+  var qq = emitter({
+    push: manipulate.bind(null, &#x27;push&#x27;),
+    unshift: manipulate.bind(null, &#x27;unshift&#x27;),
+    pause: function pause () { paused = true; },
+    resume: function resume () { paused = false; debounce(labor); },
+    pending: q
+  });
+  if (Object.defineProperty &#x26;&#x26; !Object.definePropertyPartial) {
+    Object.defineProperty(qq, &#x27;length&#x27;, { get: function getter () { return q.length; } });
+  }
+  function manipulate (how, task, done) {
+    var tasks = a(task) ? task : [task];
+    tasks.forEach(function insert (t) { q[how]({ t: t, done: done }); });
+    debounce(labor);
+  }
+  function labor () {
+    if (paused || load &#x3e;= max) { return; }
+    if (!q.length) { if (load === 0) { qq.emit(&#x27;drain&#x27;); } return; }
+    load++;
+    var job = q.pop();
+    worker(job.t, once(complete.bind(null, job)));
+    debounce(labor);
+  }
+  function complete (job) {
+    load--;
+    debounce(job.done, atoa(arguments, 1));
+    debounce(labor);
+  }
+  return qq;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## `λ.filter.series(items, iterator, done?)`
+
+Effectively an alias for `λ.filter(items, 1, iterator, done?)`.
+
+&#x3c;sub&#x3e;[_Back to top_](#quick-links)&#x3c;/sub&#x3e;
+
+## `λ.<span class="apidocCodeKeywordSpan">queue</span>(worker, cap=1)`
+
+Used to create a job queue.
+
+- `worker(job, done)` Function to process jobs in the queue
+  - `job` The current job
+  - `done` Needs to be called when processing for current job is done
+- `cap` Optional concurrency level, defaults to `1` (serial)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.contra.series" id="apidoc.element.contra.series">
+        function <span class="apidocSignatureSpan">contra.</span>series
+        <span class="apidocSignatureSpan">(tasks, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function series(tasks, done) {
+  concurrent(tasks, SERIAL, done);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  console.log(results);
+  // &#x3c;- { first: &#x27;boom&#x27;, second: &#x27;foo&#x27; }
+});
+```
+
+&#x3c;sub&#x3e;[_Back to top_](#quick-links)&#x3c;/sub&#x3e;
+
+## `λ.<span class="apidocCodeKeywordSpan">series</span>(tasks, done?)`
+
+**Effectively an alias for `λ.concurrent(tasks, 1, done?)`.**
+
+Executes tasks in series. `done` gets all the results. Results get passed as an array or hash to an optional `done` callback. Task
+ order is preserved in results.
+
+- `tasks` Collection of functions with the `(next)` signature. Can be an array or an object
+- `done` Optional function with the `(err, results)` signature
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.contra.waterfall" id="apidoc.element.contra.waterfall">
+        function <span class="apidocSignatureSpan">contra.</span>waterfall
+        <span class="apidocSignatureSpan">(steps, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function waterfall(steps, done) {
+  var d = once(done);
+  function next () {
+    var args = atoa(arguments);
+    var step = steps.shift();
+    if (step) {
+      if (errored(args, d)) { return; }
+      args.push(once(next));
+      debounce(step, args);
+    } else {
+      debounce(d, arguments);
+    }
+  }
+  next();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+&#x3c;sub&#x3e;[_Back to top_](#quick-links)&#x3c;/sub&#x3e;
+
+# API
+
+These are the asynchronous flow control methods provided by `λ`.
+
+## `λ.<span class="apidocCodeKeywordSpan">waterfall</span>(tasks, done?)`
+
+Executes tasks in series. Each step receives the arguments from the previous step.
+
+- `tasks` Array of functions with the `(...results, next)` signature
+- `done` Optional function with the `(err, ...results)` signature
+
+```js
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.contra.each" id="apidoc.module.contra.each">module contra.each</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.contra.each.each" id="apidoc.element.contra.each.each">
+        function <span class="apidocSignatureSpan">contra.</span>each
+        <span class="apidocSignatureSpan">(collection, concurrency, iterator, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function api(collection, concurrency, iterator, done) {
+  var args = arguments;
+  if (args.length === 2) { iterator = concurrency; concurrency = CONCURRENTLY; }
+  if (args.length === 3 &#x26;&#x26; typeof concurrency !== &#x27;number&#x27;) { done = iterator; iterator = concurrency; concurrency = CONCURRENTLY
+; }
+  var keys = Object.keys(collection);
+  var tasks = a(collection) ? [] : {};
+  keys.forEach(function insert (key) {
+    tasks[key] = function iterate (cb) {
+      if (iterator.length === 3) {
+        iterator(collection[key], key, cb);
+      } else {
+        iterator(collection[key], cb);
+      }
+    };
+  });
+  concurrent(tasks, cap || concurrency, then ? then(collection, once(done)) : done);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+console.log(results);
+// &#x3c;- { first: &#x27;boom&#x27;, second: &#x27;foo&#x27; }
+});
+```
+
+&#x3c;sub&#x3e;[_Back to top_](#quick-links)&#x3c;/sub&#x3e;
+
+## `λ.<span class="apidocCodeKeywordSpan">each</span>(items, cap?, iterator, done?)`
+
+Applies an iterator to each element in the collection concurrently.
+
+- `items` Collection of items. Can be an array or an object
+- `cap` Optional concurrency level, used by the internal [queue](#%CE%BBqueueworker-cap1)
+- `iterator(item, key?, cb)` Function to execute on each item
+- `item` The current item
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.contra.each.series" id="apidoc.element.contra.each.series">
+        function <span class="apidocSignatureSpan">contra.each.</span>series
+        <span class="apidocSignatureSpan">(collection, concurrency, iterator, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function api(collection, concurrency, iterator, done) {
+  var args = arguments;
+  if (args.length === 2) { iterator = concurrency; concurrency = CONCURRENTLY; }
+  if (args.length === 3 &#x26;&#x26; typeof concurrency !== &#x27;number&#x27;) { done = iterator; iterator = concurrency; concurrency = CONCURRENTLY
+; }
+  var keys = Object.keys(collection);
+  var tasks = a(collection) ? [] : {};
+  keys.forEach(function insert (key) {
+    tasks[key] = function iterate (cb) {
+      if (iterator.length === 3) {
+        iterator(collection[key], key, cb);
+      } else {
+        iterator(collection[key], cb);
+      }
+    };
+  });
+  concurrent(tasks, cap || concurrency, then ? then(collection, once(done)) : done);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  console.log(results);
+  // &#x3c;- { first: &#x27;boom&#x27;, second: &#x27;foo&#x27; }
+});
+```
+
+&#x3c;sub&#x3e;[_Back to top_](#quick-links)&#x3c;/sub&#x3e;
+
+## `λ.<span class="apidocCodeKeywordSpan">series</span>(tasks, done?)`
+
+**Effectively an alias for `λ.concurrent(tasks, 1, done?)`.**
+
+Executes tasks in series. `done` gets all the results. Results get passed as an array or hash to an optional `done` callback. Task
+ order is preserved in results.
+
+- `tasks` Collection of functions with the `(next)` signature. Can be an array or an object
+- `done` Optional function with the `(err, results)` signature
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.contra.filter" id="apidoc.module.contra.filter">module contra.filter</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.contra.filter.filter" id="apidoc.element.contra.filter.filter">
+        function <span class="apidocSignatureSpan">contra.</span>filter
+        <span class="apidocSignatureSpan">(collection, concurrency, iterator, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function api(collection, concurrency, iterator, done) {
+  var args = arguments;
+  if (args.length === 2) { iterator = concurrency; concurrency = CONCURRENTLY; }
+  if (args.length === 3 &#x26;&#x26; typeof concurrency !== &#x27;number&#x27;) { done = iterator; iterator = concurrency; concurrency = CONCURRENTLY
+; }
+  var keys = Object.keys(collection);
+  var tasks = a(collection) ? [] : {};
+  keys.forEach(function insert (key) {
+    tasks[key] = function iterate (cb) {
+      if (iterator.length === 3) {
+        iterator(collection[key], key, cb);
+      } else {
+        iterator(collection[key], cb);
+      }
+    };
+  });
+  concurrent(tasks, cap || concurrency, then ? then(collection, once(done)) : done);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## `λ.map.series(items, iterator, done?)`
+
+Effectively an alias for `λ.map(items, 1, iterator, done?)`.
+
+&#x3c;sub&#x3e;[_Back to top_](#quick-links)&#x3c;/sub&#x3e;
+
+## `λ.<span class="apidocCodeKeywordSpan">filter</span>(items, cap?, iterator, done?)`
+
+Applies an iterator to each element in the collection concurrently. Produces an object with the filtered results. Task order is
+preserved in results.
+
+- `items` Collection of items. Can be an array or an object
+- `cap` Optional concurrency level, used by the internal [queue](#%CE%BBqueueworker-cap1)
+- `iterator(item, key?, cb)` Function to execute on each item
+- `item` The current item
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.contra.filter.series" id="apidoc.element.contra.filter.series">
+        function <span class="apidocSignatureSpan">contra.filter.</span>series
+        <span class="apidocSignatureSpan">(collection, concurrency, iterator, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function api(collection, concurrency, iterator, done) {
+  var args = arguments;
+  if (args.length === 2) { iterator = concurrency; concurrency = CONCURRENTLY; }
+  if (args.length === 3 &#x26;&#x26; typeof concurrency !== &#x27;number&#x27;) { done = iterator; iterator = concurrency; concurrency = CONCURRENTLY
+; }
+  var keys = Object.keys(collection);
+  var tasks = a(collection) ? [] : {};
+  keys.forEach(function insert (key) {
+    tasks[key] = function iterate (cb) {
+      if (iterator.length === 3) {
+        iterator(collection[key], key, cb);
+      } else {
+        iterator(collection[key], cb);
+      }
+    };
+  });
+  concurrent(tasks, cap || concurrency, then ? then(collection, once(done)) : done);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  console.log(results);
+  // &#x3c;- { first: &#x27;boom&#x27;, second: &#x27;foo&#x27; }
+});
+```
+
+&#x3c;sub&#x3e;[_Back to top_](#quick-links)&#x3c;/sub&#x3e;
+
+## `λ.<span class="apidocCodeKeywordSpan">series</span>(tasks, done?)`
+
+**Effectively an alias for `λ.concurrent(tasks, 1, done?)`.**
+
+Executes tasks in series. `done` gets all the results. Results get passed as an array or hash to an optional `done` callback. Task
+ order is preserved in results.
+
+- `tasks` Collection of functions with the `(next)` signature. Can be an array or an object
+- `done` Optional function with the `(err, results)` signature
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.contra.map" id="apidoc.module.contra.map">module contra.map</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.contra.map.map" id="apidoc.element.contra.map.map">
+        function <span class="apidocSignatureSpan">contra.</span>map
+        <span class="apidocSignatureSpan">(collection, concurrency, iterator, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function api(collection, concurrency, iterator, done) {
+  var args = arguments;
+  if (args.length === 2) { iterator = concurrency; concurrency = CONCURRENTLY; }
+  if (args.length === 3 &#x26;&#x26; typeof concurrency !== &#x27;number&#x27;) { done = iterator; iterator = concurrency; concurrency = CONCURRENTLY
+; }
+  var keys = Object.keys(collection);
+  var tasks = a(collection) ? [] : {};
+  keys.forEach(function insert (key) {
+    tasks[key] = function iterate (cb) {
+      if (iterator.length === 3) {
+        iterator(collection[key], key, cb);
+      } else {
+        iterator(collection[key], cb);
+      }
+    };
+  });
+  concurrent(tasks, cap || concurrency, then ? then(collection, once(done)) : done);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## `λ.each.series(items, iterator, done?)`
+
+Effectively an alias for `λ.each(items, 1, iterator, done?)`.
+
+&#x3c;sub&#x3e;[_Back to top_](#quick-links)&#x3c;/sub&#x3e;
+
+## `λ.<span class="apidocCodeKeywordSpan">map</span>(items, cap?, iterator, done?)`
+
+Applies an iterator to each element in the collection concurrently. Produces an object with the transformation results. Task order
+ is preserved in the results.
+
+- `items` Collection of items. Can be an array or an object
+- `cap` Optional concurrency level, used by the internal [queue](#%CE%BBqueueworker-cap1)
+- `iterator(item, key?, cb)` Function to execute on each item
+- `item` The current item
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.contra.map.series" id="apidoc.element.contra.map.series">
+        function <span class="apidocSignatureSpan">contra.map.</span>series
+        <span class="apidocSignatureSpan">(collection, concurrency, iterator, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function api(collection, concurrency, iterator, done) {
+  var args = arguments;
+  if (args.length === 2) { iterator = concurrency; concurrency = CONCURRENTLY; }
+  if (args.length === 3 &#x26;&#x26; typeof concurrency !== &#x27;number&#x27;) { done = iterator; iterator = concurrency; concurrency = CONCURRENTLY
+; }
+  var keys = Object.keys(collection);
+  var tasks = a(collection) ? [] : {};
+  keys.forEach(function insert (key) {
+    tasks[key] = function iterate (cb) {
+      if (iterator.length === 3) {
+        iterator(collection[key], key, cb);
+      } else {
+        iterator(collection[key], cb);
+      }
+    };
+  });
+  concurrent(tasks, cap || concurrency, then ? then(collection, once(done)) : done);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  console.log(results);
+  // &#x3c;- { first: &#x27;boom&#x27;, second: &#x27;foo&#x27; }
+});
+```
+
+&#x3c;sub&#x3e;[_Back to top_](#quick-links)&#x3c;/sub&#x3e;
+
+## `λ.<span class="apidocCodeKeywordSpan">series</span>(tasks, done?)`
+
+**Effectively an alias for `λ.concurrent(tasks, 1, done?)`.**
+
+Executes tasks in series. `done` gets all the results. Results get passed as an array or hash to an optional `done` callback. Task
+ order is preserved in results.
+
+- `tasks` Collection of functions with the `(next)` signature. Can be an array or an object
+- `done` Optional function with the `(err, results)` signature
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
