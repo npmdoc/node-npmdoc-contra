@@ -1,4 +1,7 @@
-# api documentation for  [contra (v1.9.4)](https://github.com/bevacqua/contra)  [![npm package](https://img.shields.io/npm/v/npmdoc-contra.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-contra) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-contra.svg)](https://travis-ci.org/npmdoc/node-npmdoc-contra)
+# npmdoc-contra
+
+#### api documentation for  [contra (v1.9.4)](https://github.com/bevacqua/contra)  [![npm package](https://img.shields.io/npm/v/npmdoc-contra.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-contra) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-contra.svg)](https://travis-ci.org/npmdoc/node-npmdoc-contra)
+
 #### Asynchronous flow control with a functional taste to it
 
 [![NPM](https://nodei.co/npm/contra.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/contra)
@@ -18,34 +21,19 @@
 ```json
 
 {
+    "name": "contra",
+    "description": "Asynchronous flow control with a functional taste to it",
+    "version": "1.9.4",
+    "homepage": "https://github.com/bevacqua/contra",
     "author": {
         "name": "Nicolas Bevacqua",
         "url": "http://bevacqua.io"
     },
-    "bugs": {
-        "url": "https://github.com/bevacqua/contra/issues"
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/bevacqua/contra.git"
     },
-    "dependencies": {
-        "atoa": "1.0.0",
-        "ticky": "1.0.1"
-    },
-    "description": "Asynchronous flow control with a functional taste to it",
-    "devDependencies": {
-        "assert": "~1.1.0",
-        "browserify": "10.2.4",
-        "jshint": "~2.4.1",
-        "jshint-stylish": "~0.1.5",
-        "jshint-tap": "0.0.1",
-        "mocha": "~1.17.0",
-        "uglify-js": "2.4.23"
-    },
-    "directories": {},
-    "dist": {
-        "shasum": "f53bde42d7e5b5985cae4d99a8d610526de8f28d",
-        "tarball": "https://registry.npmjs.org/contra/-/contra-1.9.4.tgz"
-    },
-    "gitHead": "661cc16335ea6cf91f16965bea4c8930c09b2f2a",
-    "homepage": "https://github.com/bevacqua/contra",
     "keywords": [
         "a",
         "async",
@@ -56,19 +44,7 @@
         "promises",
         "q"
     ],
-    "license": "MIT",
     "main": "contra.js",
-    "maintainers": [
-        {
-            "name": "bevacqua"
-        }
-    ],
-    "name": "contra",
-    "optionalDependencies": {},
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/bevacqua/contra.git"
-    },
     "scripts": {
         "build": "browserify -s contra -do dist/contra.js contra.js && uglifyjs -m -c -o dist/contra.min.js dist/contra.js",
         "build-shim": "browserify -do dist/contra.shim.js contra.shim.js && uglifyjs -m -c -o dist/contra.shim.min.js dist/contra.shim.js",
@@ -129,7 +105,19 @@
         ],
         "harness": "mocha"
     },
-    "version": "1.9.4"
+    "devDependencies": {
+        "assert": "~1.1.0",
+        "browserify": "10.2.4",
+        "jshint": "~2.4.1",
+        "jshint-stylish": "~0.1.5",
+        "jshint-tap": "0.0.1",
+        "mocha": "~1.17.0",
+        "uglify-js": "2.4.23"
+    },
+    "dependencies": {
+        "atoa": "1.0.0",
+        "ticky": "1.0.1"
+    }
 }
 ```
 
