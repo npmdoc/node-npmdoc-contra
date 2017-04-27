@@ -448,22 +448,17 @@ Augments `thing` with the event emitter methods listed below. If `thing` isn&#x2
   concurrent(tasks, cap || concurrency, then ? then(collection, once(done)) : done);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-
-## `λ.map.series(items, iterator, done?)`
-
-Effectively an alias for `λ.map(items, 1, iterator, done?)`.
-
-&#x3c;sub&#x3e;[_Back to top_](#quick-links)&#x3c;/sub&#x3e;
-
-## `λ.<span class="apidocCodeKeywordSpan">filter</span>(items, cap?, iterator, done?)`
-
-Applies an iterator to each element in the collection concurrently. Produces an object with the filtered results. Task order is
-preserved in results.
-
-- `items` Collection of items. Can be an array or an object
-- `cap` Optional concurrency level, used by the internal [queue](#%CE%BBqueueworker-cap1)
-- `iterator(item, key?, cb)` Function to execute on each item
-- `item` The current item
+        var filtered = {};
+        Object.keys(collection).forEach(function omapper (key) {
+          if (exists(null, key)) { filtered[key] = collection[key]; }
+        });
+        return filtered;
+      }
+      if (err) { done(err); return; }
+      done(null, a(results) ? collection.<span class="apidocCodeKeywordSpan">filter</span>(exists) : ofilter());
+    };
+  }
+};
 ...</pre></li>
     </ul>
 
@@ -780,22 +775,17 @@ Executes tasks in series. `done` gets all the results. Results get passed as an 
   concurrent(tasks, cap || concurrency, then ? then(collection, once(done)) : done);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-
-## `λ.map.series(items, iterator, done?)`
-
-Effectively an alias for `λ.map(items, 1, iterator, done?)`.
-
-&#x3c;sub&#x3e;[_Back to top_](#quick-links)&#x3c;/sub&#x3e;
-
-## `λ.<span class="apidocCodeKeywordSpan">filter</span>(items, cap?, iterator, done?)`
-
-Applies an iterator to each element in the collection concurrently. Produces an object with the filtered results. Task order is
-preserved in results.
-
-- `items` Collection of items. Can be an array or an object
-- `cap` Optional concurrency level, used by the internal [queue](#%CE%BBqueueworker-cap1)
-- `iterator(item, key?, cb)` Function to execute on each item
-- `item` The current item
+        var filtered = {};
+        Object.keys(collection).forEach(function omapper (key) {
+          if (exists(null, key)) { filtered[key] = collection[key]; }
+        });
+        return filtered;
+      }
+      if (err) { done(err); return; }
+      done(null, a(results) ? collection.<span class="apidocCodeKeywordSpan">filter</span>(exists) : ofilter());
+    };
+  }
+};
 ...</pre></li>
     </ul>
 
